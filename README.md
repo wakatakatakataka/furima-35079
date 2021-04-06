@@ -15,7 +15,6 @@
 
 ### Association
 
-- has_one :destination 
 - has_many :products 
 - has_many :comments 
 - has_many :orders 
@@ -42,7 +41,7 @@
 - has_many :comments 
 - has_one :order
 
-## brand テーブル
+## brands テーブル
 
 | Column      | Type      | Options     |
 | ----------- | --------- | ----------- |
@@ -65,7 +64,7 @@
 - belongs_to: user
 - belongs_to: product
 
-## delivery テーブル
+## deliveries テーブル
 
 | Column           | Type       | Options                        |
 | ---------------- | ---------- | ------------------------------ |
@@ -81,7 +80,7 @@
 
 - belongs_to: order
 
-## category テーブル
+## categories テーブル
 
 | Column           | Type       | Options                        |
 | ---------------- | ---------- | ------------------------------ |
