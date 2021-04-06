@@ -26,7 +26,7 @@
 | ------------------ | ---------- | ------------------------------ |
 | name               | string     | null: false                    |
 | description        | string     | null: false                    |
-| condition          | integer    | null: false                    |
+| condition_id       | integer    | null: false                    |
 | shipping_change_id | integer    | null: false                    |
 | shipping_area_id   | integer    | null: false                    |
 | delivery_time_id   | integer    | null: false                    |
@@ -75,6 +75,7 @@
 | address          | string     | null: false                    |
 | building_name    | string     |                                |
 | telephone        | string     | unique: true                   |
+| order            | references | null: false, foreign_key: true |
 
 ### Association
 
