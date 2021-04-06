@@ -2,17 +2,16 @@
 
 ## users テーブル
 
-| Column             | Type   | Options     |
-| ------------------ | ------ | ----------- |
-| nickname           | string | null: false |
-| email              | string | null: false |
-| encrypted_password | string | null: false |
-| introduction       | text   |             |
-| family_name        | string | null: false |
-| first_name         | string | null: false |
-| family_name_kana   | string | null: false |
-| first_name_kana    | string | null: false |
-| bath_day           | date   | null: false |
+| Column             | Type   | Options                  |
+| ------------------ | ------ | ------------------------ |
+| nickname           | string | null: false              |
+| email              | string | null: false, unique: true|
+| encrypted_password | string | null: false              |
+| family_name        | string | null: false              |
+| first_name         | string | null: false              |
+| family_name_kana   | string | null: false              |
+| first_name_kana    | string | null: false              |
+| bath_day           | date   | null: false              |
 
 ### Association
 
@@ -20,6 +19,7 @@
 - has_one :card dependent: :destroy
 - has_many :products dependent: :destroy
 - has_many :comments dependent: :destroy
+- has_many :orders dependent: :destroy
 
 ## products テーブル
 
@@ -27,15 +27,13 @@
 | ---------------- | ---------- | ------------------------------ |
 | name             | string     | null: false                    |
 | description      | string     | null: false                    |
-| condition        | string     | null: false                    |
-| shipping_changes | string     | null: false                    |
-| shipping_area    | string     | null: false                    |
-| delivery_time    | string     | null: false                    |
+| condition        | integer    | null: false                    |
+| shipping_change  | integer    | null: false                    |
+| shipping_area    | integer    | null: false                    |
+| delivery_time    | integer    | null: false                    |
 | price            | integer    | null: false                    |
-| category_id      | integer    | null: false, foreign_key: true |
-| brand_id         | integer    | null: false, foreign_key: true |
-| shipping_id      | integer    | null: false, foreign_key: true |
-| user_id          | integer    | null: false, foreign_key: true |
+| category_id      | integer    | null: false                    |
+| seller_user_id   | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -43,6 +41,7 @@
 - belongs_to :category dependent: :destroy
 - belongs_to :brand dependent: :destroy
 - has_many :comments dependent: :destroy
+- has_one :order
 
 ## card テーブル
 
@@ -79,15 +78,10 @@
 - belongs_to: user
 - belongs_to: product
 
-## destination テーブル
+## delivery テーブル
 
 | Column           | Type       | Options                        |
 | ---------------- | ---------- | ------------------------------ |
-| user_id          | integer    | null: false, foreign_key: true |
-| family_name      | string     | null: false                    |
-| first_name       | string     | null: false                    |
-| family_name_kana | string     | null: false                    |
-| first_name_kana  | string     | null: false                    |
 | zip_code         | integer    | null: false                    |
 | prefecture       | string     | null: false                    |
 | city             | string     | null: false                    |
@@ -97,7 +91,7 @@
 
 ### Association
 
-- belongs_to: user
+- belongs_to: order
 
 ## category テーブル
 
@@ -109,3 +103,16 @@
 ### Association
 
 - has_many :products
+
+## orders テーブル
+
+| Column           | Type       | Options                        |
+| ---------------- | ---------- | ------------------------------ |
+| buyer_user_id    | references | null: false, foreign_key: true |
+| product_id       | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to: user
+- belongs_to: product
+- has_one: delivery
