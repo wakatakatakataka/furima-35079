@@ -73,7 +73,7 @@
 | city             | string     | null: false                    |
 | address          | string     | null: false                    |
 | building_name    | string     |                                |
-| telephone        | string     | unique: true                   |
+| telephone        | string     |                                |
 | order            | references | null: false, foreign_key: true |
 
 ### Association
