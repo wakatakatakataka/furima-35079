@@ -133,7 +133,7 @@ RSpec.describe User, type: :model do
         end
 
         it 'パスワードは、全角では登録できないこと' do
-          @user.password = "ABCDEF"
+          @user.password = "ABCD１１１"
           @user.valid?
           expect(@user.errors.full_messages).to include("Password Include both letters and numbers")
         end
