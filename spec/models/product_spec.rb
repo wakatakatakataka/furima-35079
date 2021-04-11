@@ -45,7 +45,7 @@ RSpec.describe Product, type: :model do
         end
 
         it "category_idが未選択な場合は登録できないこと" do
-          @product.category_id = '0'
+          @product.category_id = 0
           @product.valid?
           expect(@product.errors.full_messages).to include("Category must be other than 0")
         end
@@ -57,7 +57,7 @@ RSpec.describe Product, type: :model do
         end
 
         it "condition_idが未選択な場合は登録できないこと" do
-          @product.condition_id = '0'
+          @product.condition_id = 0
           @product.valid?
           expect(@product.errors.full_messages).to include("Condition must be other than 0")
         end
@@ -69,7 +69,7 @@ RSpec.describe Product, type: :model do
         end
 
         it "shipping_change_idが未選択な場合は登録できないこと" do
-          @product.shipping_change_id = '0'
+          @product.shipping_change_id = 0
           @product.valid?
           expect(@product.errors.full_messages).to include("Shipping change must be other than 0")
         end
@@ -81,7 +81,7 @@ RSpec.describe Product, type: :model do
         end
 
         it "shipping_area_idが未選択な場合は登録できないこと" do
-          @product.shipping_area_id = '0'
+          @product.shipping_area_id = 0
           @product.valid?
           expect(@product.errors.full_messages).to include("Shipping area must be other than 0")
         end
@@ -93,7 +93,7 @@ RSpec.describe Product, type: :model do
         end
 
         it "delivery_time_idが未選択な場合は登録できないこと" do
-          @product.delivery_time_id = '0'
+          @product.delivery_time_id = 0
           @product.valid?
           expect(@product.errors.full_messages).to include("Delivery time must be other than 0")
         end
