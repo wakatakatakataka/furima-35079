@@ -14,7 +14,7 @@ RSpec.describe Product, type: :model do
         end
 
         it "priceが9999999だと登録できる" do
-          @product.price = '9999999'
+          @product.price = 9999999
           expect(@product).to be_valid
         end
       end
@@ -117,13 +117,13 @@ RSpec.describe Product, type: :model do
         end
 
         it "priceが299だと登録できない" do
-          @product.price = '299'
+          @product.price = 299
           @product.valid?
           expect(@product.errors.full_messages).to include("Price must be greater than or equal to 300")
         end
 
         it "priceが10000000だと登録できない" do
-          @product.price = '10000000'
+          @product.price = 10000000
           @product.valid?
           expect(@product.errors.full_messages).to include("Price must be less than or equal to 9999999")
         end
