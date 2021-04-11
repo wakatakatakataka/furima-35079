@@ -12,16 +12,20 @@ class Product < ApplicationRecord
   belongs_to :condition
   belongs_to :delivery_time
 
-  validates :image,              presence: true
-  validates :name,               presence: true
-  validates :description,        presence: true
-  validates :category_id,        presence: true, numericality: { other_than: 0 }
-  validates :condition_id,       presence: true, numericality: { other_than: 0 }
-  validates :shipping_change_id, presence: true, numericality: { other_than: 0 }
-  validates :shipping_area_id,   presence: true, numericality: { other_than: 0 }
-  validates :delivery_time_id,   presence: true, numericality: { other_than: 0 }
+  with_options presence: true do
+    validates :image
+    validates :name
+    validates :description
+  end
+
+  with_options presence: true, numericality: { other_than: 0 } do
+    validates :category_id
+    validates :condition_id
+    validates :shipping_change_id
+    validates :shipping_area_id
+    validates :delivery_time_id
+  end
+
   validates :price,              presence: true, numericality: {only_integer:true,greater_than_or_equal_to:300,less_than_or_equal_to:9999999}
-  
-  
-  
-end
+
+ end
