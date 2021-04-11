@@ -44,10 +44,22 @@ RSpec.describe Product, type: :model do
           expect(@product.errors.full_messages).to include("Category can't be blank")
         end
 
+        it "category_idが未選択な場合は登録できないこと" do
+          @product.category_id = '0'
+          @product.valid?
+          expect(@product.errors.full_messages).to include("Category must be other than 0")
+        end
+
         it "condition_idがない場合は登録できないこと" do
           @product.condition_id = ''
           @product.valid?
           expect(@product.errors.full_messages).to include("Condition can't be blank")
+        end
+
+        it "condition_idが未選択な場合は登録できないこと" do
+          @product.condition_id = '0'
+          @product.valid?
+          expect(@product.errors.full_messages).to include("Condition must be other than 0")
         end
 
         it "shipping_change_idがない場合は登録できないこと" do
@@ -56,16 +68,34 @@ RSpec.describe Product, type: :model do
           expect(@product.errors.full_messages).to include("Shipping change can't be blank")
         end
 
+        it "shipping_change_idが未選択な場合は登録できないこと" do
+          @product.shipping_change_id = '0'
+          @product.valid?
+          expect(@product.errors.full_messages).to include("Shipping change must be other than 0")
+        end
+
         it "shipping_area_idがない場合は登録できないこと" do
           @product.shipping_area_id = ''
           @product.valid?
           expect(@product.errors.full_messages).to include("Shipping area can't be blank")
         end
 
+        it "shipping_area_idが未選択な場合は登録できないこと" do
+          @product.shipping_area_id = '0'
+          @product.valid?
+          expect(@product.errors.full_messages).to include("Shipping area must be other than 0")
+        end
+
         it "delivery_time_idがない場合は登録できないこと" do
           @product.delivery_time_id = ''
           @product.valid?
           expect(@product.errors.full_messages).to include("Delivery time can't be blank")
+        end
+
+        it "delivery_time_idが未選択な場合は登録できないこと" do
+          @product.delivery_time_id = '0'
+          @product.valid?
+          expect(@product.errors.full_messages).to include("Delivery time must be other than 0")
         end
 
         it "priceがない場合は登録できないこと" do
