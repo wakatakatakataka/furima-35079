@@ -15,12 +15,13 @@ class Product < ApplicationRecord
   validates :image,              presence: true
   validates :name,               presence: true
   validates :description,        presence: true
+  validates :category_id,        presence: true, numericality: { other_than: 0 }
   validates :condition_id,       presence: true, numericality: { other_than: 0 }
   validates :shipping_change_id, presence: true, numericality: { other_than: 0 }
   validates :shipping_area_id,   presence: true, numericality: { other_than: 0 }
   validates :delivery_time_id,   presence: true, numericality: { other_than: 0 }
   validates :price,              presence: true, numericality: {only_integer:true,greater_than_or_equal_to:300,less_than_or_equal_to:9999999}
-  validates :category_id,        presence: true, numericality: { other_than: 0 }
+  
   
   
 end
