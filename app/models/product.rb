@@ -1,9 +1,12 @@
 class Product < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :user, dependent: :destroy
-  belongs_to :category, dependent: :destroy
+  belongs_to :user
+  
+  # コメント行 :追加実装で使う可能性があるので残してます。
+  #belongs_to :category, dependent: :destroy
   #belongs_to :brand, dependent: :destroy
-  has_many :comments, dependent: :destroy
+  #has_many :comments, dependent: :destroy
+
   has_one :order
   has_one_attached :image
   belongs_to :shipping_area
