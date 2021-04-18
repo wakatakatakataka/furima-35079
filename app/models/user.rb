@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :products, dependent: :destroy
   #has_many :comments, dependent: :destroy
-  #has_many :orders, dependent: :destroy
+  has_many :orders, dependent: :destroy
 
   
   PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
