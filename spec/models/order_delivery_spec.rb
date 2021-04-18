@@ -14,6 +14,11 @@ RSpec.describe OrderDelivery, type: :model do
         it 'すべての値が正しく入力されていれば保存できること' do
           expect(@order_delivery).to be_valid
         end
+
+        it 'building_nameがなくても保存できること' do
+          @order_delivery.building_name = ''
+          expect(@order_delivery).to be_valid
+        end
       end
 
       context '保存できない場合' do
@@ -61,6 +66,18 @@ RSpec.describe OrderDelivery, type: :model do
 
         it "telephoneが12文字以上では登録できないこと" do
           @order_delivery.telephone = '090123456789'
+          @order_delivery.valid?
+          expect(@order_delivery.errors.full_messages).to include("Telephone is invalid")
+        end
+
+        it "telephoneは半角英字では登録できないこと" do
+          @order_delivery.telephone = "abcdefghijk"
+          @order_delivery.valid?
+          expect(@order_delivery.errors.full_messages).to include("Telephone is invalid")
+        end
+
+        it "telephoneは全角では登録できないこと" do
+          @order_delivery.telephone = "ABCD１１１１１１１"
           @order_delivery.valid?
           expect(@order_delivery.errors.full_messages).to include("Telephone is invalid")
         end
